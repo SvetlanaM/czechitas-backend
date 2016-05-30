@@ -9,7 +9,7 @@ class CourseVenue(models.Model):
     street_number = models.CharField(max_length = 25)
     city = models.CharField(max_length = 25)
 
-    def __str__(self):
+    def __unicode__(self):
         return u"%s - %s" %(self.title, self.city)
 
     class Meta:

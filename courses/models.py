@@ -44,8 +44,12 @@ class Course(models.Model):
     course_venue = models.ForeignKey(CourseVenue, default = 1)
     course_category = models.ForeignKey(Category, default = 2)
 
-    def __str__(self):
+    def __unicode__(self):
         return u"%s - %s" %(self.title, self.course_venue.city)
+
+    def save(self, request, obj, *args, **kwargs):
+        obj.course_admin = request.user.id
+        obj.save()
 
     class Meta:
         ordering = ['updated_date']
