@@ -13,6 +13,11 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ('title', 'publish', 'couch', 'category', 'venue', 'price',  )
     list_filter = ('publish', 'course_start_date', 'registration_start_date', 'open_registration', )
     search_fields = ('title', )
+    actions = ['make_published']
+
+    def make_published(self, request, queryset):
+        queryset.update(publish=False)
+    make_published.short_description = "Mark selected stories as published"
 
 
     def category(self, obj):
