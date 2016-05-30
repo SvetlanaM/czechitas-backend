@@ -27,7 +27,7 @@ SECRET_KEY = "6+*4x@@07&va^iliu2_^lrw_s#u&0v42a#dv)-@hly_lemt7%="
 DEBUG = True
 
 # Application definition
-
+#Basic settings 
 INSTALLED_APPS = (
     'material',
     'material.admin',
