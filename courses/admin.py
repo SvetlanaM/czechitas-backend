@@ -2,9 +2,9 @@ from django.contrib import admin
 from .models import Course, Category
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title',)
-    #list_filter = ('active')
-    list_editable = ('title',)
+    list_display = ('title', 'active', 'colored_title', )
+    list_filter = ('active', )
+    list_editable = ['title']
     search_fields = ('title',)
 
 admin.site.register(Course)

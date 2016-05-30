@@ -12,18 +12,18 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
-    """
+
     def colored_title(self):
         return format_html('<span style="color: #{};">{}</span>',
             self.color_code,
             self.title
             )
-    """
+
 
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-        #ordering = ['updated_date']
+        ordering = ['updated_date']
 
 class Course(models.Model):
     title = models.CharField(max_length = 255)
