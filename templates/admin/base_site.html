@@ -1,18 +1,7 @@
 {% extends "admin/base.html" %}
 
-{% block title %}Czechitas {% endblock %}
-{% block branding %}<i class="mdi-action-settings-applications" style="font-size:80px"></i>{% endblock %}
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}<img src="https://trello-attachments.s3.amazonaws.com/5585ac604e4d95cb6a64c0a7/931x272/4c4bb01f7dcb65f55073d70bceca56ad/czechitas-logo.png" class="logo-img">{% endblock %}
+
 {% block nav-global %}{% endblock %}
-
-{% block extrajs %}
-{% if user.is_anonymous %}
-<script type="text/javascript">
-toast('Use  admin:admin  to log into administration interface', 100000, 'alert-error');
-</script>
-{% endif %}
-{% endblock %}
-
-
-{% block back_link %}
-<li class="no-padding"><a class="collapsible-header no-pjax" href="/accounting/"><i class="mdi-navigation-arrow-back"></i> Back to website</a></li>
-{% endblock %}
