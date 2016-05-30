@@ -47,7 +47,7 @@ class Course(models.Model):
     def __unicode__(self):
         return u"%s - %s" %(self.title, self.course_venue.city)
 
-    def save(self, request, *args, **kwargs):
+    def save(self, *args, **kwargs):
         self.course_admin = request.user.id
         self.course_admin.save()
 
