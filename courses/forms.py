@@ -43,7 +43,7 @@ class UserCreateForm(UserCreationForm):
         user.username = "Hovno"
         old_user = user.username
         if old_user:
-            user_new = user[1] + "23"
+            user_new = old_user[1] + "23"
             user.username = user_new
         if commit:
             user.save()
