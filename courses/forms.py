@@ -3,14 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 class UserCreateForm(UserCreationForm):
-    """
     email = forms.EmailField(required = True)
     first_name = forms.CharField(required = False)
     last_name = forms.CharField(required = False)
     username = forms.CharField(required = False)
     password1 = forms.CharField(required = False)
     password2 = forms.CharField(required = False)
-    """
+
 
     class Meta:
         model = User
@@ -28,7 +27,7 @@ class UserCreateForm(UserCreationForm):
             user.password2 = "Encoder+237"
         user.username = "Hovno"
         user = user.username
-        if exists:
+        if user:
             user = user[1] + "23"
             user.username = user
         if commit:
