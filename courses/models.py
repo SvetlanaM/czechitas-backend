@@ -29,7 +29,7 @@ class Course(models.Model):
     notes = models.TextField(blank = True, null = True)
     registration_form_link = models.URLField(blank = True, null = True)
     course_venue = models.ForeignKey(CourseVenue)
-    course_category = models.ForeignKey(Category, default = 1)
+    course_category = models.ForeignKey(Category, default = 2)
 
     def __str__(self):
         return u"%s - %s" %(self.title, self.course_venue.city)
