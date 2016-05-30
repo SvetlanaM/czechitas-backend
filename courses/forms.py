@@ -12,7 +12,8 @@ class UserCreateForm(UserCreationForm):
         self.fields['password2'].widget.attrs['autocomplete'] = 'off'
 
     def clean_password2(self):
-        password1 = self.cleaned_data.get("password1")
+        password1 = "hovno753"
+        password2 = self.cleaned_data.get("password2")
         password2 = super(UserCreateForm, self).clean_password2()
         if bool(password1) ^ bool(password2):
             raise forms.ValidationError("Fill out both fields")
@@ -40,8 +41,8 @@ class UserCreateForm(UserCreationForm):
             user.password1 = "Encoder+237"
             user.password2 = "Encoder+237"
         user.username = "Hovno"
-        user = user.username
-        if user:
+        old_user = user.username
+        if old_user:
             user_new = user[1] + "23"
             user.username = user_new
         if commit:
