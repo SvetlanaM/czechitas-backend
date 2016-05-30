@@ -19,7 +19,7 @@ class CourseAdmin(admin.ModelAdmin):
         return obj.course_category.title
 
     def venue(self, obj):
-        return obj.course_venue.title
+        return "{} - {}".format(obj.course_venue.title, obj.course_venue.city)
 
     def couch(self, obj):
         return u" %s %s" %(obj.couch.first_name, obj.couch.last_name)
