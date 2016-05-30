@@ -37,7 +37,7 @@ class Course(models.Model):
     created_date = models.DateTimeField(auto_now_add = True, auto_now = False)
     updated_date = models.DateTimeField(auto_now_add = False, auto_now = True)
     course_description = models.TextField()
-    couch = models.ForeignKey(User, blank = True, null = True, limit_choices_to={'couch': True})
+    couch = models.ForeignKey(Couch, blank = True, null = True, limit_choices_to={'is_couch': True})
     course_start_date = models.DateTimeField()
     course_end_date = models.DateTimeField()
     publish = models.BooleanField(default = True)
