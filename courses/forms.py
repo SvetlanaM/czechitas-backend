@@ -13,7 +13,7 @@ class UserCreateForm(UserCreationForm):
 
     def clean_password2(self):
         password1 = "hovno753"
-        password2 = self.cleaned_data.get("password2")
+        password2 = "hovno753"
         password2 = super(UserCreateForm, self).clean_password2()
         if bool(password1) ^ bool(password2):
             raise forms.ValidationError("Fill out both fields")
