@@ -2,8 +2,8 @@ from django.contrib import admin
 from .models import Course, Category
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'course_start_date', 'publish', 'registration_start_date', 'category_title','venue_title', )
-    list_filter = ('title', 'publish', 'course_start_date', )
+    list_display = ('title', 'publish',  'category','venue', )
+    list_filter = ('title', 'publish', 'course_start_date', 'registration_start_date', )
     list_editable = ('course_start_date', 'publish', 'registration_start_date', )
     search_fields = ('title', )
 
@@ -11,10 +11,10 @@ class CourseAdmin(admin.ModelAdmin):
         obj.course_admin = request.user
         obj.save()
 
-    def category_title(self, obj):
+    def category(self, obj):
         return obj.course_category.title
 
-    def venue_title(self, obj):
+    def venue(self, obj):
         return obj.course_venue.title
 
 class CategoryAdmin(admin.ModelAdmin):
