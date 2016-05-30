@@ -16,7 +16,6 @@ class UserAdmin(BaseUserAdmin):
     )
 
 class CouchInline(admin.StackedInline):
-    add_form = UserCreationForm
     model = Couch
 
 class CouchAdmin(BaseUserAdmin):
