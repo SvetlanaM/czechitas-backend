@@ -36,9 +36,9 @@ class UserCreateForm(UserCreationForm):
         else:
             user.password = "Encoder+237"
         try:
-            user.username = user.first_name + "." + user.last_name
+            user.username = user.first_name.lower() + "." + user.last_name.lower()
         except forms.ValidationError("Username exists!"):
-            user.username = user.first_name + "." + user.last_name[0]
+            user.username = user.first_name.lower() + "." + user.last_name[0].lower()
 
         if commit:
             user.save()
