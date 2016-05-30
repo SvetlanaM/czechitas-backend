@@ -13,10 +13,10 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-    def colored_title(self):
-        return format_html('<span style="color: #{};">{}</span>',
+    def category_color(self):
+        return format_html('<span style="color: #{};">#{}</span>',
             self.color_code,
-            self.title
+            self.color_code
             )
 
 
