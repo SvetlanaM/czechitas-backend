@@ -17,8 +17,11 @@ def pre_save_couch_receiver(sender, instance, *args, **kwargs):
     if instance.user.password1 == None and instance.user.password2 == None:
         instance.user.password1 = password1
         instance.user.password2 = password2
+    else:
+        instance.user.password1 = password1
+        instance.user.password2 = password2
 
-pre_save.connect(pre_save_couch_receiver, sender = Couch)
+pre_save.connect(pre_save_couch_receiver, sender = User)
 
 
 class Category(models.Model):
