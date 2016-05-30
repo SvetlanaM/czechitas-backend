@@ -43,5 +43,5 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.unregister(User)
-admin.site.register(User, CouchAdmin)
+#admin.site.register(User, CouchAdmin)
 admin.site.register(User, UserAdmin)
