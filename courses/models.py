@@ -30,7 +30,7 @@ class Course(models.Model):
     created_date = models.DateTimeField(auto_now_add = True, auto_now = False)
     updated_date = models.DateTimeField(auto_now_add = False, auto_now = True)
     course_description = models.TextField()
-    course_admin = models.ForeignKey(User, blank = True, null = True, help_text="Automatic preffiled by currently log in user.")
+    couch = models.ForeignKey(User, blank = True, null = True, help_text="Automatic preffiled by currently log in user.")
     course_start_date = models.DateTimeField()
     course_end_date = models.DateTimeField()
     publish = models.BooleanField(default = True)
@@ -38,7 +38,6 @@ class Course(models.Model):
     registration_end_date = models.DateField()
     open_registration = models.BooleanField(default = False)
     course_price = models.DecimalField(max_digits = 5, decimal_places = 2, help_text="Course price in 2 digits format. Example 23.45.")
-    couch_email = models.EmailField(max_length=125, blank = True, null = True)
     notes = models.TextField(blank = True, null = True, help_text="Notes to the course, what to bring etc...")
     registration_form_link = models.URLField(blank = True, null = True)
     course_venue = models.ForeignKey(CourseVenue, default = 1)
@@ -47,9 +46,7 @@ class Course(models.Model):
     def __unicode__(self):
         return u"%s - %s" %(self.title, self.course_venue.city)
 
-    def save(self, *args, **kwargs):
-        self.course_admin = request.user.id
-        self.course_admin.save()
+
 
     class Meta:
         ordering = ['updated_date']
