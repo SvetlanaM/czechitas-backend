@@ -11,7 +11,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
-        
+
 class Course(models.Model):
     title = models.CharField(max_length = 255)
     created_date = models.DateTimeField(auto_now_add = True, auto_now = False)
@@ -29,7 +29,7 @@ class Course(models.Model):
     notes = models.TextField(blank = True, null = True)
     registration_form_link = models.URLField(blank = True, null = True)
     course_venue = models.ForeignKey(CourseVenue)
-    course_category = models.ForeignKey(Category)
+    course_category = models.ForeignKey(Category, default = 1)
 
     def __str__(self):
         return u"%s - %s" %(self.title, self.course_venue.city)
