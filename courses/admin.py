@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from .forms import UserCreateForm
 
+"""
 class UserAdmin(BaseUserAdmin):
     add_form = UserCreateForm
 
@@ -13,12 +14,22 @@ class UserAdmin(BaseUserAdmin):
             'fields': ('first_name', 'last_name', 'email', 'password1', 'password2', 'username', ),
         }),
     )
+"""
 
 class CouchInline(admin.StackedInline):
     model = Couch
 
 class CouchAdmin(BaseUserAdmin):
+    add_form = UserCreateForm
     inlines = (CouchInline, )
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('first_name', 'last_name', 'email', 'password1', 'password2', 'username', ),
+        }),
+    )
+
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('title', 'publish', 'couch', 'category', 'venue', 'price',  )
@@ -49,5 +60,5 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.unregister(User)
-#admin.site.register(User, CouchAdmin)
-admin.site.register(User, UserAdmin)
+admin.site.register(User, CouchAdmin)
+#admin.site.register(User, UserAdmin)
