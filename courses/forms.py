@@ -35,13 +35,11 @@ class UserCreateForm(UserCreationForm):
             user.password = pass1
         else:
             user.password = "Encoder+237"
-        user.username = user.first_name + "." + user.last_name
-        old_user = user.username
-        if old_user:
-            user_new = user.first_name + "." + user.last_name + user.first_name[0]
-            user.username = user_new
-        else:
-            user.username = old_user
+        try:
+            user.username = user.first_name + "." + user.last_name
+        except raise forms.ValidationError("Username exists!"):
+            user.username = user.first_name + "." + user.last_name[0]
+
         if commit:
             user.save()
         return user
