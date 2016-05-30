@@ -26,7 +26,7 @@ class CouchAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('first_name', 'last_name', 'email', 'password1', 'password2', 'username', ),
+            'fields': ('first_name', 'last_name', 'email', 'password1', 'username', ),
         }),
     )
 
