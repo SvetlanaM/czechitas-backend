@@ -14,12 +14,12 @@ class Couch(models.Model):
 def pre_save_couch_receiver(sender, instance, *args, **kwargs):
     password1 = "123456"
     password2 = "123456"
-    if instance.user.password1 == None and instance.user.password2 == None:
-        instance.user.password1 = password1
-        instance.user.password2 = password2
+    if instance.user.password == None:
+        instance.user.password = password1
+        instance.user.password = password2
     else:
-        instance.user.password1 = password1
-        instance.user.password2 = password2
+        instance.user.password = password1
+        instance.user.password = password2
 
 pre_save.connect(pre_save_couch_receiver, sender = User)
 
