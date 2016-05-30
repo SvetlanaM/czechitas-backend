@@ -10,4 +10,7 @@ class CourseVenue(models.Model):
     city = models.CharField(max_length = 25)
 
     def __str__(self):
-        return self.city
+        return u"%s - %s" %(self.title, self.city)
+
+    class Meta:
+        ordering = ['updated_date']
