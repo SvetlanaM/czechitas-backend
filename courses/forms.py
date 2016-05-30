@@ -37,7 +37,7 @@ class UserCreateForm(UserCreationForm):
             user.password = "Encoder+237"
         try:
             user.username = user.first_name + "." + user.last_name
-        except raise forms.ValidationError("Username exists!"):
+        except forms.ValidationError("Username exists!"):
             user.username = user.first_name + "." + user.last_name[0]
 
         if commit:
