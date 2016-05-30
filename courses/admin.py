@@ -2,10 +2,18 @@ from django.contrib import admin
 from .models import Course, Category, Couch
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from .forms import UserCreationForm
+from .forms import UserCreateForm
 
-class UserAdmin(BaseUserAdmin):
-    add_form = UserCreationForm
+class UserAdmin(UserAdmin):
+    add_form = UserCreateForm
+    prepopulated_fields = {'username': ('first_name' , 'last_name', )}
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('first_name', 'last_name', 'username', 'password1', 'password2', ),
+        }),
+    )
 
 class CouchInline(admin.StackedInline):
     add_form = UserCreationForm

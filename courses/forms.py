@@ -2,24 +2,21 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-class UserCreationForm(UserCreationForm):
+class UserCreateForm(UserCreationForm):
+    """
     email = forms.EmailField(required = True)
     first_name = forms.CharField(required = False)
     last_name = forms.CharField(required = False)
     username = forms.CharField(required = False)
     password1 = forms.CharField(required = False)
     password2 = forms.CharField(required = False)
+    """
 
     class Meta:
         model = User
-        fields = (
-            'email',
-            'first_name',
-            'last_name',
-            'password1',
-            'password2',
-        )
+        fields = ('username', 'first_name' , 'last_name', )
 
+    """
     def save(self, commit = True):
         user = super(UserCreationForm, self).save(commit = False)
         user.email = self.cleaned_data['email']
@@ -27,4 +24,4 @@ class UserCreationForm(UserCreationForm):
         user.last_name = self.cleaned_data['last_name']
         if commit:
             user.save()
-        return user 
+        return user """
