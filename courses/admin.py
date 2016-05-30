@@ -2,18 +2,9 @@ from django.contrib import admin
 from .models import Course, Category, Couch
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from django import forms
-from authtools.forms import UserCreationForm
 
-class UserCreationForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
-        super(UserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['password1'].required = False
-        self.fields['password2'].required = False
-        self.fields['password1'].widget.attrs['autocomplete'] = 'off'
-        self.fields['password2'].widget.attrs['autocomplete'] = 'off'
 
-    
+
 
 class CouchInline(admin.StackedInline):
     model = Couch
