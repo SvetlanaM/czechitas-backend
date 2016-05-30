@@ -6,7 +6,6 @@ from .forms import UserCreateForm
 
 class UserAdmin(BaseUserAdmin):
     add_form = UserCreateForm
-    prepopulated_fields = {'username': ('first_name' , 'last_name', )}
 
     add_fieldsets = (
         (None, {
