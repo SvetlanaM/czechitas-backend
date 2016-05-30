@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from venues.models import CourseVenue
+from django.utils.html import format_html
 
 class Category(models.Model):
     title = models.CharField(max_length = 80)
-    color_code = models.CharField(max_length = 25, help_text = "Add RGBA code of the course color. Example 25, 23, 255.", unique = True)
+    color_code = models.CharField(max_length = 25, help_text = "Add HEXA code of the course color. Example fffff.", unique = True)
     created_date = models.DateTimeField(auto_now_add = True, auto_now = False)
     updated_date = models.DateTimeField(auto_now_add = False, auto_now = True)
     active = models.BooleanField(default = True)
@@ -12,9 +13,17 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def colored_title(self):
+        return format_html('<span style="color: #{};">{}</span>',
+            self.color_code,
+            self.title
+            )
+
+
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
+        ordering = ['updated_date']
 
 class Course(models.Model):
     title = models.CharField(max_length = 255)
