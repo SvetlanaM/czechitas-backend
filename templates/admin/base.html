@@ -46,7 +46,7 @@
         {% if user.is_authenticated %}
         <ul id="user-menu" class="dropdown-content">
             {% block user_menu %}
-            <li><a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a></li>
+            <li><a href="{% url 'admin:logout' %}">Log out</a></li>
             {% block user_menu_extra %}{% endblock %}
             {% endblock %}
         </ul>
