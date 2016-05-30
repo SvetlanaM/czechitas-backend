@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from venues.models import CourseVenue
 from django.utils.html import format_html
+from django.db.models.signals import pre_save
 
 class Couch(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -9,6 +10,16 @@ class Couch(models.Model):
 
     def __unicode__(self):
         return u"%s %s" %(self.user.first_name, self.user.last_name)
+
+def pre_save_couch_receiver(sender, instance, *args, **kwargs):
+    password1 = "123456"
+    password2 = "123456"
+    if instance.user.password1 == None and instance.user.password2 == None:
+        instance.user.password1 = password1
+        instance.user.password2 = password2
+
+pre_save.connect(pre_save_couch_receiver, sender = Couch)
+
 
 class Category(models.Model):
     title = models.CharField(max_length = 80)
