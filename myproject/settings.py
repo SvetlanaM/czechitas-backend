@@ -30,7 +30,6 @@ DEBUG = True
 
 INSTALLED_APPS = (
     'material',
-    'material.frontend',
     'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
