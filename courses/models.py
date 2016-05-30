@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 from venues.models import CourseVenue
 from django.utils.html import format_html
 
+class Couch(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_couch = models.BooleanField(default = False)
+
+    def __unicode__(self):
+        return u"%s %s" %(self.user.first_name, self.user.last_name)
+
 class Category(models.Model):
     title = models.CharField(max_length = 80)
     color_code = models.CharField(max_length = 25, help_text = "Add HEXA code of the course color. Example fffff.", unique = True)
@@ -30,7 +37,7 @@ class Course(models.Model):
     created_date = models.DateTimeField(auto_now_add = True, auto_now = False)
     updated_date = models.DateTimeField(auto_now_add = False, auto_now = True)
     course_description = models.TextField()
-    couch = models.ForeignKey(User, blank = True, null = True, help_text="Automatic preffiled by currently log in user.")
+    couch = models.ForeignKey(Couch, blank = True, null = True, help_text="Automatic preffiled by currently log in user.")
     course_start_date = models.DateTimeField()
     course_end_date = models.DateTimeField()
     publish = models.BooleanField(default = True)

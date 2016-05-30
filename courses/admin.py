@@ -1,8 +1,16 @@
 from django.contrib import admin
-from .models import Course, Category
+from .models import Course, Category, Couch
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
+
+class CouchInline(admin.StackedInline):
+    model = Couch
+
+class CouchAdmin(BaseUserAdmin):
+    inlines = (CouchInline, )
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'publish', 'open_registration', 'category', 'venue', 'course_price',  )
+    list_display = ('title', 'publish', 'couch', 'category', 'venue', 'course_price',  )
     list_filter = ('publish', 'course_start_date', 'registration_start_date', 'open_registration', )
     list_editable = ('course_price',  )
     search_fields = ('title', )
@@ -25,3 +33,5 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.unregister(User)
+admin.site.register(User, CouchAdmin)
