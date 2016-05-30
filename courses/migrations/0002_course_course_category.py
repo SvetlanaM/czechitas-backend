@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='course',
             name='course_category',
-            field=models.ForeignKey(default=datetime.datetime(2016, 5, 30, 6, 22, 43, 418222, tzinfo=utc), on_delete=django.db.models.deletion.CASCADE, to='courses.Category'),
+            field=models.ForeignKey(default=1), on_delete=django.db.models.deletion.CASCADE, to='courses.Category'),
             preserve_default=False,
         ),
     ]
