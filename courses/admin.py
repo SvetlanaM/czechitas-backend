@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from .forms import UserCreateForm
 
-class UserAdmin(UserAdmin):
+class UserAdmin(BaseUserAdmin):
     add_form = UserCreateForm
     prepopulated_fields = {'username': ('first_name' , 'last_name', )}
 
