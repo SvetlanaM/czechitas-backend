@@ -11,10 +11,6 @@ class Couch(models.Model):
     def __unicode__(self):
         return u"%s %s" %(self.user.first_name, self.user.last_name)
 
-def pre_save_couch_receiver(sender, instance, *args, **kwargs):
-    instance.set_password("123456")
-
-pre_save.connect(pre_save_couch_receiver, sender = User)
 
 
 class Category(models.Model):
