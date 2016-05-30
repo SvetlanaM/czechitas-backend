@@ -56,6 +56,23 @@
               border-bottom: 1px solid #293b8e;
               box-shadow: 0 1px 0 0 #293b8e;
             }
+            .dropdown-content li > a, .dropdown-content li > span {
+              color: #293b8e;
+            }
+            input:not([type]):focus:not([readonly]) + label,
+            input[type=text]:focus:not([readonly]) + label,
+            input[type=password]:focus:not([readonly]) + label,
+            input[type=email]:focus:not([readonly]) + label,
+            input[type=url]:focus:not([readonly]) + label,
+            input[type=time]:focus:not([readonly]) + label,
+            input[type=date]:focus:not([readonly]) + label,
+            input[type=datetime-local]:focus:not([readonly]) + label,
+            input[type=tel]:focus:not([readonly]) + label,
+            input[type=number]:focus:not([readonly]) + label,
+            input[type=search]:focus:not([readonly]) + label,
+            textarea.materialize-textarea:focus:not([readonly]) + label {
+              color: #293b8e;
+            }
           </style>
         {% endblock %}
 
