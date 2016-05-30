@@ -19,11 +19,11 @@ class Category(models.Model):
             self.title
             )
     """
-    
+
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-        ordering = ['updated_date']
+        #ordering = ['updated_date']
 
 class Course(models.Model):
     title = models.CharField(max_length = 255)
