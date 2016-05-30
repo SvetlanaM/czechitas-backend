@@ -2,11 +2,13 @@ from django.contrib import admin
 from .models import Course, Category, Couch
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
+from .forms import UserCreationForm
 
-
-
+class UserAdmin(BaseUserAdmin):
+    add_form = UserCreationForm
 
 class CouchInline(admin.StackedInline):
+    add_form = UserCreationForm
     model = Couch
 
 class CouchAdmin(BaseUserAdmin):
