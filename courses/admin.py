@@ -10,9 +10,8 @@ class CouchAdmin(BaseUserAdmin):
     inlines = (CouchInline, )
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'publish', 'couch', 'category', 'venue', 'course_price',  )
+    list_display = ('title', 'publish', 'couch', 'category', 'venue', 'price',  )
     list_filter = ('publish', 'course_start_date', 'registration_start_date', 'open_registration', )
-    list_editable = ('course_price',  )
     search_fields = ('title', )
 
 

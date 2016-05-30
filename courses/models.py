@@ -53,7 +53,8 @@ class Course(models.Model):
     def __unicode__(self):
         return u"%s - %s" %(self.title, self.course_venue.city)
 
-
+    def price(self):
+        return '{} CZK'.format(self.course_price)
 
     class Meta:
         ordering = ['updated_date']
