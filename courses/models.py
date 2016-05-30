@@ -47,9 +47,9 @@ class Course(models.Model):
     def __unicode__(self):
         return u"%s - %s" %(self.title, self.course_venue.city)
 
-    def save(self, request, obj, *args, **kwargs):
-        obj.course_admin = request.user.id
-        obj.save()
+    def save(self, request, *args, **kwargs):
+        self.course_admin = request.user.id
+        self.course_admin.save()
 
     class Meta:
         ordering = ['updated_date']

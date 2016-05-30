@@ -2,9 +2,9 @@ from django.contrib import admin
 from .models import Course, Category
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'publish', 'open_registration', 'category', 'venue', )
-    list_filter = ('title', 'publish', 'course_start_date', 'registration_start_date', 'open_registration', )
-    list_editable = ('publish', 'open_registration', )
+    list_display = ('title', 'publish', 'open_registration', 'category', 'venue', 'course_price', 'couch_email', )
+    list_filter = ('publish', 'course_start_date', 'registration_start_date', 'open_registration', )
+    list_editable = ('course_price', 'couch_email', )
     search_fields = ('title', )
 
     def save(self, request, obj, *args, **kwargs):
