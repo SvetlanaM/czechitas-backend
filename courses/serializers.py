@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 from .models import Course, Category, Couch
-from venues.serializers import CitySerializer
+from venues.serializers import CitySerializer, CourseVenueSerializer
 from django.contrib.auth.models import User
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -43,7 +43,7 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
 
 class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
-    course_venue = CitySerializer(many = False, read_only = True)
+    course_venue = CourseVenueSerializer(many = False, read_only = True)
     couch = UserDetailSerializer(many = False, read_only = True)
     class Meta:
         model = Course
