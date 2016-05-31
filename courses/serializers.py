@@ -2,6 +2,17 @@ from rest_framework import serializers
 from rest_framework.reverse import reverse
 from .models import Course, Category
 from venues.serializers import CitySerializer
+from django.contrib.auth.models import User
+
+class UserDetailSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = User
+		fields = [
+			'id',
+			'email',
+			'first_name',
+			'last_name',
+		]
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -28,11 +39,13 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
             'course_venue',
             'updated_date',
             'course_category',
+
         )
 
 class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CitySerializer(many = False, read_only = True)
+    couch = UserDetailSerializer(many = False, read_only = True)
     class Meta:
         model = Course
         fields = (
@@ -46,4 +59,5 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
             'registration_form_link',
             'course_venue',
             'course_category',
+            'couch',
         )
