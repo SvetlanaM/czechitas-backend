@@ -4,10 +4,6 @@ from venues.views import CourseVenueListAPIView, CityListAPIView
 from courses.views import PreparedCourseListAPIView, OpenCourseListAPIView
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'myproject.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/v1/venues/$', CourseVenueListAPIView.as_view(), name='venue-list'),
     url(r'^api/v1/cities/$', CityListAPIView.as_view(), name='city-list'),
