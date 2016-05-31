@@ -8,12 +8,12 @@ from rest_framework.authentication import BasicAuthentication
 class PreparedCourseListAPIView(generics.ListAPIView):
     authentication_classes = [BasicAuthentication, ]
     permissions_classes = [permissions.IsAuthenticated, ]
-    queryset = Course.objects.filter(publish = True, open_registration = False)
-    serializer_class = CategorySerializer
+    queryset = Category.objects.filter(active = True)
+    serializer_class = CourseSerializer
 
 
 class OpenCourseListAPIView(generics.ListAPIView):
     authentication_classes = [BasicAuthentication, ]
     permissions_classes = [permissions.IsAuthenticated, ]
     queryset = Course.objects.filter(publish = True, open_registration = True)
-    serializer_class = CategorySerializer
+    serializer_class = CourseSerializer
