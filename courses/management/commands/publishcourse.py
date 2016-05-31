@@ -9,7 +9,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         courses = Course.objects.all()
         today = datetime.datetime.today()
-        print (today)
         for c in courses:
             try:
                 course = Course.objects.get(pk=int(c.pk))
