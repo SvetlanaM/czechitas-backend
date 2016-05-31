@@ -1,18 +1,15 @@
 from rest_framework import serializers
 from rest_framework.reverse import reverse
-from .models import Course, Category
+from .models import Course, Category, Couch
 from venues.serializers import CitySerializer
 from django.contrib.auth.models import User
 
 class UserDetailSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = User
+		model = Couch
 		fields = [
 			'id',
-			'email',
-			'first_name',
-			'last_name',
-              'couch_set',
+              'user_set',
 		]
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
