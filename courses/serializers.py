@@ -6,11 +6,11 @@ from django.contrib.auth.models import User
 
 class UserDetailSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='get_user_email')
-	class Meta:
-		model = Couch
-		fields = [
-			'id',
-              'user',
+    class Meta:
+        model = Couch
+        fields = [
+        'id',
+         'user',
 		]
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
