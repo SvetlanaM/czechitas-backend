@@ -14,7 +14,12 @@ class Command(BaseCommand):
                 course = Course.objects.get(pk=int(c.pk))
                 if str(course.registration_start_date) == today:
                     course.open_registration = True
-                    print ("Changed")
+                    print ("Course opened the registration")
+                    course.save()
+                else if str(course.registration_end_date) == today:
+                    course.publish = False
+                    course.open_registration = False
+                    print ("Course closed the registration and is not active")
                     course.save()
                 else:
                     print("No changes")
