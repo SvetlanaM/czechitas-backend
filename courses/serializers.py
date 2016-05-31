@@ -12,6 +12,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 			'email',
 			'first_name',
 			'last_name',
+              'couch_set',
 		]
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
