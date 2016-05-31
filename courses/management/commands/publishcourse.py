@@ -16,7 +16,7 @@ class Command(BaseCommand):
                     course.open_registration = True
                     print ("Course opened the registration")
                     course.save()
-                else if str(course.registration_end_date) == today:
+                elif str(course.registration_end_date) == today:
                     course.publish = False
                     course.open_registration = False
                     print ("Course closed the registration and is not active")
