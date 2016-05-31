@@ -10,3 +10,10 @@ class PreparedCourseListAPIView(generics.ListAPIView):
     permissions_classes = [permissions.IsAuthenticated, ]
     queryset = Course.objects.filter(publish = True, open_registration = False)
     serializer_class = CategorySerializer
+
+
+class OpenCourseListAPIView(generics.ListAPIView):
+    authentication_classes = [BasicAuthentication, ]
+    permissions_classes = [permissions.IsAuthenticated, ]
+    queryset = Course.objects.filter(publish = True, open_registration = True)
+    serializer_class = CategorySerializer
