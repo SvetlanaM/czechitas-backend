@@ -18,12 +18,12 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
-    course_category = CourseSerializer(many = True, read_only = True)
+    course_set = CourseSerializer(many = True, read_only = True)
     class Meta:
         model = Category
         fields = (
             'id',
             'title',
             'color_code',
-            'course_category',
+            'course_set',
         )

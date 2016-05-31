@@ -9,7 +9,7 @@ class PreparedCourseListAPIView(generics.ListAPIView):
     authentication_classes = [BasicAuthentication, ]
     permissions_classes = [permissions.IsAuthenticated, ]
     queryset = Category.objects.filter(active = True)
-    serializer_class = CourseSerializer
+    serializer_class = CategorySerializer
 
 
 class OpenCourseListAPIView(generics.ListAPIView):
