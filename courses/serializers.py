@@ -5,6 +5,7 @@ from venues.serializers import CitySerializer
 from django.contrib.auth.models import User
 
 class UserDetailSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(source='get_user_email')
 	class Meta:
 		model = Couch
 		fields = [

@@ -11,6 +11,9 @@ class Couch(models.Model):
     def __unicode__(self):
         return u"%s %s" %(self.user.first_name, self.user.last_name)
 
+    def get_user_email(self):
+        return self.user.email
+
 
 
 class Category(models.Model):
