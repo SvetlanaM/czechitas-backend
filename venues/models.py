@@ -12,5 +12,8 @@ class CourseVenue(models.Model):
     def __unicode__(self):
         return u"%s - %s" %(self.title, self.city)
 
+    def get_city(self):
+        return self.city
+
     class Meta:
         ordering = ['updated_date']

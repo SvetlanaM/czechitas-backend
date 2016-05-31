@@ -54,7 +54,7 @@ class Course(models.Model):
     course_category = models.ForeignKey(Category, default = 2)
 
     def __unicode__(self):
-        return u"%s - %s" %(self.title, self.course_venue.city)
+        return u"%s" %(self.title)
 
     def price(self):
         return '{} CZK'.format(self.course_price)
