@@ -3,7 +3,7 @@ from rest_framework.reverse import reverse
 from .models import Course, Category
 from venues.serializers import CitySerializer
 
-class CourseSerializer(serializers.ModelSerializer):
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
     course_venue = CitySerializer(many = False, read_only = True)
     class Meta:
         model = Course
@@ -18,12 +18,12 @@ class CourseSerializer(serializers.ModelSerializer):
         )
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
-    course_set = CourseSerializer(many = True, read_only = True)
+    course_category = CourseSerializer(many = True, read_only = True)
     class Meta:
         model = Category
         fields = (
             'id',
             'title',
             'color_code',
-            'course_set',
+            'course_category',
         )
