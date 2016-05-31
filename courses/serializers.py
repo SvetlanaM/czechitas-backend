@@ -9,7 +9,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 		model = Couch
 		fields = [
 			'id',
-              'user_set',
+              'user',
 		]
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
