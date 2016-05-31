@@ -36,9 +36,25 @@ class UserCreateForm(UserCreationForm):
         else:
             user.password = "Encoder+237"
         try:
-            user.username = user.first_name.lower() + "." + user.last_name.lower()
+            name = user.email
+            temp_list = []
+            for i in name:
+                if i == "@":
+                    break
+                else:
+                    temp_list.append(i)
+            new_name = "".join(temp_list)
+            user.username = new_name
         except forms.ValidationError("Username exists!"):
-            user.username = user.first_name.lower() + "." + user.last_name[0].lower()
+            name = user.email
+            temp_list = []
+            for i in name:
+                if i == "@":
+                    break
+                else:
+                    temp_list.append(i)
+            new_name = "".join(temp_list)
+            user.username = new_name[1:4]
 
         if commit:
             user.save()
