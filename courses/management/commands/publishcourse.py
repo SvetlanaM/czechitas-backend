@@ -8,15 +8,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         courses = Course.objects.all()
-        today = datetime.datetime.today()
+        today = datetime.datetime.today().strftime("%Y-%m-%d")
         for c in courses:
             try:
                 course = Course.objects.get(pk=int(c.pk))
-                if course.registration_start_date == today:
+                if str(course.registration_start_date) == today:
                     course.open_registration = True
                     print ("Changed")
                     course.save()
                 else:
                     print("No changes")
+                    print (course.registration_start_date)
+                    print (today)
             except Course.DoesNotExist:
                 raise CommandError("Error")
