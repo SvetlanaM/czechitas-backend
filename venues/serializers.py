@@ -7,6 +7,7 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CourseVenue
         fields = (
+            'id',
             'city',
         )
 

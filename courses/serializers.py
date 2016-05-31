@@ -15,15 +15,14 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
             'course_description',
             'course_venue',
             'updated_date',
+            'course_category',
         )
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
-    course_set = CourseSerializer(many = True, read_only = True)
     class Meta:
         model = Category
         fields = (
             'id',
             'title',
             'color_code',
-            'course_set',
         )
