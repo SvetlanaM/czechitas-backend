@@ -27,7 +27,7 @@ class Category(models.Model):
 
     audit_log = AuditLog()
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
     def category_color(self):
