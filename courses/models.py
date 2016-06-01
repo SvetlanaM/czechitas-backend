@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from venues.models import CourseVenue
 from django.utils.html import format_html
 from django.db.models.signals import pre_save
+from audit_log.models.fields import LastUserField
+from audit_log.models.managers import AuditLog
 
 class Couch(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -22,6 +24,8 @@ class Category(models.Model):
     created_date = models.DateTimeField(auto_now_add = True, auto_now = False)
     updated_date = models.DateTimeField(auto_now_add = False, auto_now = True)
     active = models.BooleanField(default = True)
+
+    audit_log = AuditLog()
 
     def __str__(self):
         return self.title
