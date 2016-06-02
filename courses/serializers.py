@@ -12,7 +12,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
     states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
-        temp = Couch.objects.get(id=obj.id).audit_log.all()
+        temp = Couch.objects.get(id=obj.id).audit_log.last()
         try:
             for i in temp:
                 return i.action_date
@@ -20,7 +20,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
             return "No changes"
 
     def get_states(self, obj):
-        temp = Couch.objects.get(id=obj.id).audit_log.all()
+        temp = Couch.objects.get(id=obj.id).audit_log.last()
         try:
             for i in temp:
                 return i.action_type
@@ -41,7 +41,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
     states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
-        temp = Category.objects.get(id=obj.id).audit_log.all()
+        temp = Category.objects.get(id=obj.id).audit_log.last()
         try:
             for i in temp:
                 return i.action_date
@@ -49,7 +49,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
             return "No changes"
 
     def get_states(self, obj):
-        temp = Category.objects.get(id=obj.id).audit_log.all()
+        temp = Category.objects.get(id=obj.id).audit_log.last()
         try:
             for i in temp:
                 return i.action_type

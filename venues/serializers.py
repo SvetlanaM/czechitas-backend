@@ -8,7 +8,7 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
     states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
-        temp = Course.objects.get(id=obj.id).audit_log.all()
+        temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
         try:
             for i in temp:
                 return i.action_date
@@ -16,7 +16,7 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
             return "No changes"
 
     def get_states(self, obj):
-        temp = Course.objects.get(id=obj.id).audit_log.all()
+        temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
         try:
             for i in temp:
                 return i.action_type
@@ -37,7 +37,7 @@ class CourseVenueSerializer(serializers.HyperlinkedModelSerializer):
     states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
-        temp = CourseVenue.objects.get(id=obj.id).audit_log.all()
+        temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
         try:
             for i in temp:
                 return i.action_date
@@ -45,7 +45,7 @@ class CourseVenueSerializer(serializers.HyperlinkedModelSerializer):
             return "No changes"
 
     def get_states(self, obj):
-        temp = CourseVenue.objects.get(id=obj.id).audit_log.all()
+        temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
         try:
             for i in temp:
                 return i.action_state
