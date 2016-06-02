@@ -80,19 +80,19 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CourseVenueSerializer(many = False, read_only = True)
     couch = UserDetailSerializer(many = False, read_only = True)
-    dates = serializers.SerializerMethodField('get_dates')
-    states = serializers.SerializerMethodField('get_states')
+    dates = serializers.SerializerMethodField()
+    states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
-        temp = Course.objects.get(id=obj.id).audit_log.all()
+        temp = Course.objects.get(id=obj.id).audit_log.last()
         for i in temp:
             return i.action_date
 
     def get_states(self, obj):
-        temp = Course.objects.get(id=obj.id).audit_log.all()
+        temp = Course.objects.get(id=obj.id).audit_log.last()
         for i in temp:
             return i.action_date
-            
+
     class Meta:
         model = Course
         fields = (
