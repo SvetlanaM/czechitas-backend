@@ -12,12 +12,12 @@ class UserDetailSerializer(serializers.ModelSerializer):
     states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
-        temp = User.objects.get(id=obj.id).audit_log.all()
+        temp = Couch.objects.get(id=obj.id).audit_log.all()
         for i in temp:
             return i.action_date
 
     def get_states(self, obj):
-        temp = User.objects.get(id=obj.id).audit_log.all()
+        temp = Couch.objects.get(id=obj.id).audit_log.all()
         for i in temp:
             return i.action_date
 
