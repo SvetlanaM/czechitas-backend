@@ -50,11 +50,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
     def get_states(self, obj):
         temp = Category.objects.get(id=obj.id).audit_log.last()
-        try:
-            for i in temp:
-                return i.action_type
-        except:
-            return "No changes"
+        return temp.action_type
 
     class Meta:
         model = Category
