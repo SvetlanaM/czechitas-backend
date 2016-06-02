@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .serializers import CategorySerializer, CourseSerializer, CourseDetailSerializer
+from .serializers import CategorySerializer, CourseSerializer, CourseDetailSerializer, DeletedSerializer
 from .models import Course, Category
 from rest_framework import generics, permissions
 from rest_framework.authentication import BasicAuthentication
 from drf_multiple_model.views import MultipleModelAPIView
-import datetime
+import datetime, pytz, timedelta
 from venues.models import CourseVenue
 from venues.serializers import CitySerializer, CourseVenueSerializer
 
@@ -35,13 +35,15 @@ class CategoryListAPIView(MultipleModelAPIView):
 
     def get_queryList(self):
         timestamp = float(self.kwargs['timestamp'])
-        date_value = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%dT%H:%M:%S%Z')
+        date_value = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%dT%H:%M:%S%Z') - timedelta(hours = 2)
+        
 
         queryList = (
             (Category.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CategorySerializer, 'categories'),
             (Course.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CourseDetailSerializer, 'courses'),
             (CourseVenue.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CourseVenueSerializer, 'venues'),
-            (CourseVenue.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CitySerializer, 'cities')
+            (CourseVenue.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CitySerializer, 'cities'),
+            (Course.audit_log.filter(action_date__gte = date_value, action_type = "D").order_by('action_date').distinct(), DeletedSerializer, 'deleted-courses')
         )
 
         return queryList

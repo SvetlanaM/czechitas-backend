@@ -51,6 +51,24 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
             'states',
         )
 
+class DeletedSerializer(serializers.HyperlinkedModelSerializer):
+    states = serializers.SerializerMethodField()
+
+    def get_states(self, obj):
+        temp = Course.objects.get(id=obj.id).audit_log.all()
+        try:
+            for i in temp:
+                return i.action_type
+        except:
+            return "No changes"
+
+    class Meta:
+        model = Category
+        fields = (
+            'id',
+            'states',
+        )
+
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CitySerializer(many = False, read_only = True)
@@ -73,6 +91,7 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
 
         )
 
+
 class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CourseVenueSerializer(many = False, read_only = True)
@@ -89,6 +108,8 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
                 return "D"
             elif temp.open_registration == True:
                 return "O"
+            elif temp.action_type == "D":
+                return "R"
             else:
                 pass
         except:
