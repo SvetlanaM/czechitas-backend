@@ -4,7 +4,8 @@ from .models import Course, Category
 from rest_framework import generics, permissions
 from rest_framework.authentication import BasicAuthentication
 from drf_multiple_model.views import MultipleModelAPIView
-import datetime, pytz, timedelta
+import datetime, pytz
+from datetime import timedelta
 from venues.models import CourseVenue
 from venues.serializers import CitySerializer, CourseVenueSerializer
 
@@ -36,7 +37,7 @@ class CategoryListAPIView(MultipleModelAPIView):
     def get_queryList(self):
         timestamp = float(self.kwargs['timestamp'])
         date_value = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%dT%H:%M:%S%Z') - timedelta(hours = 2)
-        
+
 
         queryList = (
             (Category.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CategorySerializer, 'categories'),
