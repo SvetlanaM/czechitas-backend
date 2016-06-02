@@ -38,14 +38,14 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
     states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
-        temp = Category.objects.get(id=obj.id).audit_log.last()
+        temp = Category.objects.get(id=obj.id).audit_log.first()
         try:
             return temp.action_date
         except:
             return "No changes"
 
     def get_states(self, obj):
-        temp = Category.objects.get(id=obj.id).audit_log.last()
+        temp = Category.objects.get(id=obj.id).audit_log.first()
         try:
             return temp.action_type
         except:

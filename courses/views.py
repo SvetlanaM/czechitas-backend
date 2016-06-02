@@ -33,7 +33,7 @@ class CategoryListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         timestamp = self.kwargs['timestamp']
-        queryset = Category.audit_log.filter(action_date__gte = timestamp).distinct('id').order_by('-id')
+        queryset = Category.audit_log.filter(action_date__gte = timestamp).distinct('id').order_by('id').reverse()
         return queryset
 
     serializer_class = CategorySerializer
