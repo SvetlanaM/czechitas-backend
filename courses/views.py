@@ -36,7 +36,8 @@ class CategoryListAPIView(MultipleModelAPIView):
 
     def get_queryList(self):
         timestamp = float(self.kwargs['timestamp'])
-        date_value = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%dT%H:%M:%S%Z') - timedelta(hours = 2)
+        timestamp = timestamp - timedelta(hours = 2)
+        date_value = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%dT%H:%M:%S%Z')
 
 
         queryList = (
