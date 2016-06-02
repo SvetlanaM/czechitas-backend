@@ -30,5 +30,5 @@ class CourseRetrieveAPIView(generics.RetrieveAPIView):
 class CategoryListAPIView(generics.ListAPIView):
     authentication_classes = [BasicAuthentication, ]
     permissions_classes = [permissions.IsAuthenticated, ]
-    queryset = Category.objects.filter(active = True).audit_log.filter(action_date == "2016-06-01T20:53:02.122Z")
+    queryset = Category.audit_log.filter(action_date = "2016-06-01T20:53:02.122Z")
     serializer_class = CategorySerializer
