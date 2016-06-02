@@ -13,19 +13,11 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
     def get_dates(self, obj):
         temp = Couch.objects.get(id=obj.id).audit_log.last()
-        try:
-            for i in temp:
-                return i.action_date
-        except:
-            return "No changes"
+        return temp.action_date
 
     def get_states(self, obj):
         temp = Couch.objects.get(id=obj.id).audit_log.last()
-        try:
-            for i in temp:
-                return i.action_type
-        except:
-            return "No changes"
+        return temp.action_type
 
     class Meta:
         model = Couch
@@ -42,11 +34,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
     def get_dates(self, obj):
         temp = Category.objects.get(id=obj.id).audit_log.last()
-        try:
-            for i in temp:
-                return i.action_date
-        except:
-            return "No changes"
+        return temp.action_date
 
     def get_states(self, obj):
         temp = Category.objects.get(id=obj.id).audit_log.last()
@@ -93,19 +81,11 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
 
     def get_dates(self, obj):
         temp = Course.objects.get(id=obj.id).audit_log.last()
-        try:
-            for i in temp:
-                return i.action_date
-        except:
-            return "No changes"
+        return temp.action_date
 
     def get_states(self, obj):
         temp = Course.objects.get(id=obj.id).audit_log.last()
-        try:
-            for i in temp:
-                return i.action_type
-        except:
-            return "No changes"
+        return temp.action_type
 
     class Meta:
         model = Course
