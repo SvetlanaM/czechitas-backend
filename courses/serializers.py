@@ -8,17 +8,38 @@ from django.contrib.auth.models import User
 
 class UserDetailSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='get_user_email')
+    dates = serializers.SerializerMethodField('get_dates')
+    states = serializers.SerializerMethodField('get_states')
+
+    def get_dates(self, obj):
+        temp = User.objects.get(id=obj.id).audit_log.all()
+        for i in temp:
+            return i.action_date
+
+    def get_states(self, obj):
+        temp = User.objects.get(id=obj.id).audit_log.all()
+        for i in temp:
+            return i.action_date
+
     class Meta:
         model = Couch
         fields = [
         'id',
          'user',
+         'dates',
+         'states',
 		]
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
-    dates = serializers.SerializerMethodField()
+    dates = serializers.SerializerMethodField('get_dates')
+    states = serializers.SerializerMethodField('get_states')
 
     def get_dates(self, obj):
+        temp = Category.objects.get(id=obj.id).audit_log.all()
+        for i in temp:
+            return i.action_date
+
+    def get_states(self, obj):
         temp = Category.objects.get(id=obj.id).audit_log.all()
         for i in temp:
             return i.action_date
@@ -30,12 +51,15 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
             'title',
             'color_code',
             'dates',
+            'states',
         )
 
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CitySerializer(many = False, read_only = True)
     url = serializers.HyperlinkedIdentityField(view_name = 'course-detail', lookup_field = 'pk')
+
+
     class Meta:
         model = Course
         fields = (
@@ -49,12 +73,26 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
             'updated_date',
             'course_category',
 
+
         )
 
 class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CourseVenueSerializer(many = False, read_only = True)
     couch = UserDetailSerializer(many = False, read_only = True)
+    dates = serializers.SerializerMethodField('get_dates')
+    states = serializers.SerializerMethodField('get_states')
+
+    def get_dates(self, obj):
+        temp = Course.objects.get(id=obj.id).audit_log.all()
+        for i in temp:
+            return i.action_date
+
+    def get_states(self, obj):
+        temp = Course.objects.get(id=obj.id).audit_log.all()
+        for i in temp:
+            return i.action_date
+            
     class Meta:
         model = Course
         fields = (
@@ -69,4 +107,6 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
             'course_venue',
             'course_category',
             'couch',
+            'dates',
+            'states',
         )
