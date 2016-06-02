@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 
 class UserDetailSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='get_user_email')
-    dates = serializers.SerializerMethodField('get_dates')
-    states = serializers.SerializerMethodField('get_states')
+    dates = serializers.SerializerMethodField()
+    states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
         temp = User.objects.get(id=obj.id).audit_log.all()
@@ -31,8 +31,8 @@ class UserDetailSerializer(serializers.ModelSerializer):
 		]
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
-    dates = serializers.SerializerMethodField('get_dates')
-    states = serializers.SerializerMethodField('get_states')
+    dates = serializers.SerializerMethodField()
+    states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
         temp = Category.objects.get(id=obj.id).audit_log.all()

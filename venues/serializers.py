@@ -4,8 +4,8 @@ from .models import CourseVenue
 
 class CitySerializer(serializers.HyperlinkedModelSerializer):
     city = serializers.CharField(source='get_city')
-    dates = serializers.SerializerMethodField('get_dates')
-    states = serializers.SerializerMethodField('get_states')
+    dates = serializers.SerializerMethodField()
+    states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
         temp = Course.objects.get(id=obj.id).audit_log.all()
@@ -27,8 +27,8 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
         )
 
 class CourseVenueSerializer(serializers.HyperlinkedModelSerializer):
-    dates = serializers.SerializerMethodField('get_dates')
-    states = serializers.SerializerMethodField('get_states')
+    dates = serializers.SerializerMethodField()
+    states = serializers.SerializerMethodField()
 
     def get_dates(self, obj):
         temp = CourseVenue.objects.get(id=obj.id).audit_log.all()
