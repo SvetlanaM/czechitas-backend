@@ -7,20 +7,15 @@ import time
 
 class UserDetailSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='get_user_email')
-    dates = serializers.SerializerMethodField()
     states = serializers.SerializerMethodField()
-
-    def get_dates(self, obj):
-        temp = Couch.objects.get(id=obj.id).audit_log.last()
-        try:
-            return temp.action_date
-        except:
-            return "No changes"
 
     def get_states(self, obj):
         temp = Couch.objects.get(id=obj.id).audit_log.last()
         try:
-            return temp.action_type
+            if temp.is_couch == True:
+                return temp.action_type
+            elif temp.is_couch == False:
+                return "D"
         except:
             return "No changes"
 
@@ -29,7 +24,6 @@ class UserDetailSerializer(serializers.ModelSerializer):
         fields = [
         'id',
          'user',
-         'dates',
          'states',
 		]
 
@@ -83,20 +77,18 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CourseVenueSerializer(many = False, read_only = True)
     couch = UserDetailSerializer(many = False, read_only = True)
-    dates = serializers.SerializerMethodField()
     states = serializers.SerializerMethodField()
 
-    def get_dates(self, obj):
-        temp = Course.objects.get(id=obj.id).audit_log.last()
-        try:
-            return temp.action_date
-        except:
-            return "No changes"
 
     def get_states(self, obj):
         temp = Course.objects.get(id=obj.id).audit_log.last()
         try:
-            return temp.action_type
+            if temp.publish == True:
+                return temp.action_type
+            elif temp.publish == False:
+                return "D"
+            else:
+                pass
         except:
             return "No changes"
 
@@ -114,6 +106,5 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
             'course_venue',
             'course_category',
             'couch',
-            'dates',
             'states',
         )

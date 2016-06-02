@@ -27,13 +27,17 @@ class CourseRetrieveAPIView(generics.RetrieveAPIView):
 	queryset = Course.objects.filter(publish = True)
 	serializer_class = CourseDetailSerializer
 
-class CategoryListAPIView(generics.ListAPIView):
+class CategoryListAPIView(MultipleModelAPIView):
     authentication_classes = [BasicAuthentication, ]
     permissions_classes = [permissions.IsAuthenticated, ]
 
-    def get_queryset(self):
+    def get_queryList(self):
         timestamp = self.kwargs['timestamp']
-        queryset = Category.objects.filter(updated_date__gte = timestamp).order_by('updated_date').distinct()
-        return queryset
+        date_value = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%dT%H:%M:%S%Z')
 
-    serializer_class = CategorySerializer
+        queryList = (
+            (Category.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CategorySerializer),
+            (Course.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CourseDetailSerializer)
+        )
+
+        return queryList

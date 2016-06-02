@@ -4,20 +4,18 @@ from .models import CourseVenue
 
 class CitySerializer(serializers.HyperlinkedModelSerializer):
     city = serializers.CharField(source='get_city')
-    dates = serializers.SerializerMethodField()
     states = serializers.SerializerMethodField()
 
-    def get_dates(self, obj):
-        temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
-        try:
-            return temp.action_date
-        except:
-            return "No changes"
 
     def get_states(self, obj):
         temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
         try:
-            return temp.action_type
+            if temp.active == True:
+                return temp.action_type
+            elif temp.active == False:
+                return "D"
+            else:
+                pass
         except:
             return "No changes"
 
@@ -26,26 +24,23 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'id',
             'city',
-            'dates',
             'states',
         )
 
 class CourseVenueSerializer(serializers.HyperlinkedModelSerializer):
-    dates = serializers.SerializerMethodField()
     states = serializers.SerializerMethodField()
 
-    def get_dates(self, obj):
-        temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
-        try:
-            return temp.action_date
-        except:
-            return "No changes"
 
 
     def get_states(self, obj):
         temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
         try:
-            return temp.action_type
+            if temp.active == True:
+                return temp.action_type
+            elif temp.active == False:
+                return "D"
+            else:
+                pass
         except:
             return "No changes"
 
@@ -57,6 +52,5 @@ class CourseVenueSerializer(serializers.HyperlinkedModelSerializer):
             'street_name',
             'street_number',
             'city',
-            'dates',
             'states',
         )
