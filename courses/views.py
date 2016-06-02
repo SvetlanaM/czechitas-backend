@@ -5,6 +5,8 @@ from rest_framework import generics, permissions
 from rest_framework.authentication import BasicAuthentication
 from drf_multiple_model.views import MultipleModelAPIView
 import datetime
+from venues.models import CourseVenue
+from venues.serializers import CitySerializer, CourseVenueSerializer
 
 
 
@@ -37,7 +39,9 @@ class CategoryListAPIView(MultipleModelAPIView):
 
         queryList = (
             (Category.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CategorySerializer),
-            (Course.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CourseDetailSerializer)
+            (Course.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CourseDetailSerializer),
+            (CourseVenue.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CourseVenueSerializer),
+            (CourseVenue.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CitySerializer)
         )
 
         return queryList

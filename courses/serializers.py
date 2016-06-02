@@ -87,6 +87,8 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
                 return temp.action_type
             elif temp.publish == False:
                 return "D"
+            elif temp.open_registration == True:
+                return "O"
             else:
                 pass
         except:
