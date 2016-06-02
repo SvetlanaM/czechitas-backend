@@ -2,6 +2,7 @@ dj-database-url==0.4.0
 Django==1.9.2
 django-audit-log==0.7.0
 django-material==0.7.0
+django-rest-multiple-models==1.6.3
 django-simple-history==1.8.1
 djangorestframework==3.3.3
 gunicorn==19.4.5

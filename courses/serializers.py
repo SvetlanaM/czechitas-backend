@@ -3,8 +3,7 @@ from rest_framework.reverse import reverse
 from .models import Course, Category, Couch
 from venues.serializers import CitySerializer, CourseVenueSerializer
 from django.contrib.auth.models import User
-
-
+import time
 
 class UserDetailSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='get_user_email')
