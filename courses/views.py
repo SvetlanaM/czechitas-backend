@@ -32,7 +32,7 @@ class CategoryListAPIView(MultipleModelAPIView):
     permissions_classes = [permissions.IsAuthenticated, ]
 
     def get_queryList(self):
-        timestamp = self.kwargs['timestamp']
+        timestamp = float(self.kwargs['timestamp'])
         date_value = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%dT%H:%M:%S%Z')
 
         queryList = (
