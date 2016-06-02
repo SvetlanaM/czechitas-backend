@@ -41,7 +41,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
         try:
             if temp.active == True:
                 return temp.action_type
-            else if temp.active == False:
+            elif temp.active == False:
                 return "D"
             else:
                 pass
