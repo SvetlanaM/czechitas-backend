@@ -10,6 +10,8 @@ class Couch(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_couch = models.BooleanField(default = False)
 
+    audit_log = AuditLog()
+
     def __unicode__(self):
         return u"%s %s" %(self.user.first_name, self.user.last_name)
 
@@ -59,6 +61,8 @@ class Course(models.Model):
     registration_form_link = models.URLField(blank = True, null = True)
     course_venue = models.ForeignKey(CourseVenue, default = 1)
     course_category = models.ForeignKey(Category, default = 2)
+
+    audit_log = AuditLog()
 
     def __unicode__(self):
         return u"%s" %(self.title)

@@ -1,4 +1,6 @@
 from django.db import models
+from audit_log.models.fields import LastUserField
+from audit_log.models.managers import AuditLog
 
 class CourseVenue(models.Model):
     title = models.CharField(max_length = 255)
@@ -8,6 +10,8 @@ class CourseVenue(models.Model):
     street_name = models.CharField(max_length = 255)
     street_number = models.CharField(max_length = 25)
     city = models.CharField(max_length = 25)
+
+    audit_log = AuditLog()
 
     def __unicode__(self):
         return u"%s - %s" %(self.title, self.city)
