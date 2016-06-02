@@ -4,7 +4,7 @@ from .models import Course, Category
 from rest_framework import generics, permissions
 from rest_framework.authentication import BasicAuthentication
 from drf_multiple_model.views import MultipleModelAPIView
-
+import datetime
 
 
 
@@ -30,5 +30,5 @@ class CourseRetrieveAPIView(generics.RetrieveAPIView):
 class CategoryListAPIView(generics.ListAPIView):
     authentication_classes = [BasicAuthentication, ]
     permissions_classes = [permissions.IsAuthenticated, ]
-    queryset = Category.audit_log.filter(action_id = 2)
+    queryset = Category.audit_log.filter(action_date__gte = datetime.datetime.now())
     serializer_class = CategorySerializer
