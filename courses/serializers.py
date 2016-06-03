@@ -103,7 +103,7 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
         temp = Course.objects.get(id=obj.id).audit_log.first()
         try:
             if temp.publish == True and temp.open_registration == False:
-                return "U"
+                return temp.action_type
             elif temp.publish == False:
                 return "D"
             elif temp.publish == True and temp.open_registration == True:
