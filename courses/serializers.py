@@ -102,8 +102,8 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
     def get_states(self, obj):
         temp = Course.objects.get(id=obj.id).audit_log.last()
         try:
-            if temp.publish == True:
-                return temp.action_type
+            if temp.publish == True and temp.open_registration == False:
+                return "P"
             elif temp.publish == False:
                 return "D"
             elif temp.publish == True and temp.open_registration == True:
