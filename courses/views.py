@@ -46,7 +46,7 @@ class CategoryListAPIView(MultipleModelAPIView):
             (Course.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CourseDetailSerializer, 'courses'),
             (CourseVenue.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CourseVenueSerializer, 'venues'),
             (CourseVenue.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct(), CitySerializer, 'cities'),
-            (Course.audit_log.filter(action_type = "D"), DeletedSerializer, 'deleted-courses')
+            (Course.audit_log.filter(action_date__gte = date_value).order_by('action_date').distinct(), DeletedSerializer, 'deleted-courses')
         )
 
         return queryList
