@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'drf_multiple_model',
     #custom app
     'courses',
@@ -117,6 +118,8 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+
+
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
@@ -152,4 +155,22 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
     ),
-    }
+}
+
+SWAGGER_SETTINGS = {
+    'exclude_namespaces': [],
+    'api_version': '1.0',
+    'api_path': '/',
+    'enabled_methods': [
+        'get',
+        'post',
+        'put',
+        'patch',
+        'delete'
+    ],
+    'api_key': '',
+    'is_authenticated': True,
+    'is_superuser': False,
+    'permission_denied_handler': None,
+    'resource_access_handler': None,
+}
