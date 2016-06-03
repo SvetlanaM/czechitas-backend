@@ -100,10 +100,10 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
 
 
     def get_states(self, obj):
-        temp = Course.objects.get(id=obj.id).audit_log.last()
+        temp = Course.objects.get(id=obj.id).audit_log.first()
         try:
             if temp.publish == True and temp.open_registration == False:
-                return "P"
+                return "U"
             elif temp.publish == False:
                 return "D"
             elif temp.publish == True and temp.open_registration == True:
