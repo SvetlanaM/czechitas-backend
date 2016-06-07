@@ -11,7 +11,6 @@ class CourseVenueListAPIView(generics.ListAPIView):
     serializer_class = CourseVenueSerializer
 
 class CityListAPIView(generics.ListAPIView):
-    authentication_classes = [BasicAuthentication, ]
-    permissions_classes = [permissions.IsAuthenticated, ]
+    permissions_classes = [permissions.AllowAny, ]
     queryset = CourseVenue.objects.filter(active = True)
     serializer_class = CitySerializer
