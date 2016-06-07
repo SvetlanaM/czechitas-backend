@@ -12,27 +12,23 @@ from venues.serializers import CitySerializer, CourseVenueSerializer
 
 
 class PreparedCourseListAPIView(generics.ListAPIView):
-    authentication_classes = [BasicAuthentication, ]
-    permissions_classes = [permissions.IsAuthenticated, ]
+    permissions_classes = [permissions.AllowAny, ]
     queryset = Course.objects.filter(publish = True, open_registration = False).order_by('updated_date')
     serializer_class = CourseSerializer
 
 
 class OpenCourseListAPIView(generics.ListAPIView):
-    authentication_classes = [BasicAuthentication, ]
-    permissions_classes = [permissions.IsAuthenticated, ]
+    permissions_classes = [permissions.AllowAny, ]
     queryset = Course.objects.filter(publish = True, open_registration = True).order_by('updated_date')
     serializer_class = CourseSerializer
 
 class CourseRetrieveAPIView(generics.RetrieveAPIView):
-	authentication_classes = [BasicAuthentication, ]
-	permissions_classes = [permissions.IsAuthenticated, ]
+	permissions_classes = [permissions.AllowAny, ]
 	queryset = Course.objects.filter(publish = True)
 	serializer_class = CourseDetailSerializer
 
 class CategoryListAPIView(MultipleModelAPIView):
-    authentication_classes = [BasicAuthentication, ]
-    permissions_classes = [permissions.IsAuthenticated, ]
+    permissions_classes = [permissions.AllowAny, ]
 
     def get_queryList(self):
         timestamp = float(self.kwargs['timestamp'])

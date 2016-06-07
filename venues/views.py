@@ -5,8 +5,7 @@ from rest_framework import generics, permissions
 from rest_framework.authentication import BasicAuthentication
 
 class CourseVenueListAPIView(generics.ListAPIView):
-    authentication_classes = [BasicAuthentication, ]
-    permissions_classes = [permissions.IsAuthenticated, ]
+    permissions_classes = [permissions.AllowAny, ]
     queryset = CourseVenue.objects.filter(active = True)
     serializer_class = CourseVenueSerializer
 
