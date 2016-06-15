@@ -29,6 +29,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     states = serializers.SerializerMethodField()
+    color_code = serializers.CharField(source = 'category_color_code')
 
     def get_states(self, obj):
         temp = Category.objects.get(id=obj.id).audit_log.first()

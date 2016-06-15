@@ -38,6 +38,9 @@ class Category(models.Model):
             self.color_code
             )
 
+    def category_color_code(self):
+        return u"#" + self.color_code
+
 
     class Meta:
         verbose_name = 'Category'
