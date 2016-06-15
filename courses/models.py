@@ -74,9 +74,7 @@ class Course(models.Model):
     def price(self):
         return '{} CZK'.format(self.course_price)
 
-    def convert_datetime(self):
-        current_date = self.course_start_date
-        return current_date.format("%d.%m.%Y")
+
 
 
     class Meta:
