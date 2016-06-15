@@ -75,7 +75,7 @@ class Course(models.Model):
         return '{} CZK'.format(self.course_price)
 
     def convert_datetime(self):
-        current_date = datetime.datetime.strptime("self.course_start_date", "%Y-%m-%d")
+        current_date = self.course_start_date
         return current_date.format("%d.%m.%Y")
 
 
