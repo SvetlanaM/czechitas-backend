@@ -60,7 +60,7 @@ class Course(models.Model):
     registration_start_date = models.DateField()
     registration_end_date = models.DateField()
     open_registration = models.BooleanField(default = False)
-    course_price = models.DecimalField(max_digits = 5, decimal_places = 2, help_text="Course price in 2 digits format. Example 23.45.")
+    course_price = models.DecimalField(max_digits = 5, decimal_places = 2, help_text="Course price in 2 digits format. Example 23.45.", blank = True, null = True)
     notes = models.TextField(blank = True, null = True, help_text="Notes to the course, what to bring etc...")
     registration_form_link = models.URLField(blank = True, null = True)
     course_venue = models.ForeignKey(CourseVenue, default = 1)
