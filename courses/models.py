@@ -5,6 +5,7 @@ from django.utils.html import format_html
 from django.db.models.signals import pre_save
 from audit_log.models.fields import LastUserField
 from audit_log.models.managers import AuditLog
+import datetime
 
 class Couch(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -72,6 +73,11 @@ class Course(models.Model):
 
     def price(self):
         return '{} CZK'.format(self.course_price)
+
+    def convert_datetime(self):
+        current_date = datetime.datetime.strptime(self.course_start_date, "%Y-%m-%d")
+        return current_date.format("%d.%m.%Y")
+
 
     class Meta:
         ordering = ['updated_date']

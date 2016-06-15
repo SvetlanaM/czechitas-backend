@@ -74,7 +74,7 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CitySerializer(many = False, read_only = True)
     url = serializers.HyperlinkedIdentityField(view_name = 'course-detail', lookup_field = 'pk')
-
+    course_start_date = serializers.CharField(source = 'convert_datetime')
 
     class Meta:
         model = Course
