@@ -22,7 +22,7 @@ class OpenCourseListAPIView(generics.ListAPIView):
     queryset = Course.objects.filter(publish = True, open_registration = True).order_by('updated_date')
     serializer_class = CourseDetailSerializer
 
-class CourseRetrieveAPIView(generics.RetrieveAPIView):
+class CourseAllAPIView(generics.ListAPIView):
 	permissions_classes = [permissions.AllowAny, ]
 	queryset = Course.objects.filter(publish = True)
 	serializer_class = CourseDetailSerializer
