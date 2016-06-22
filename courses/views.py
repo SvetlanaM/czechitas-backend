@@ -14,13 +14,13 @@ from venues.serializers import CitySerializer, CourseVenueSerializer
 class PreparedCourseListAPIView(generics.ListAPIView):
     permissions_classes = [permissions.AllowAny, ]
     queryset = Course.objects.filter(publish = True, open_registration = False).order_by('updated_date')
-    serializer_class = CourseSerializer
+    serializer_class = CourseDetailSerializer
 
 
 class OpenCourseListAPIView(generics.ListAPIView):
     permissions_classes = [permissions.AllowAny, ]
     queryset = Course.objects.filter(publish = True, open_registration = True).order_by('updated_date')
-    serializer_class = CourseSerializer
+    serializer_class = CourseDetailSerializer
 
 class CourseRetrieveAPIView(generics.RetrieveAPIView):
 	permissions_classes = [permissions.AllowAny, ]
