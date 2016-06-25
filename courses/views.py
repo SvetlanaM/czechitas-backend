@@ -29,11 +29,12 @@ class CourseAllAPIView(generics.ListAPIView):
 
 class CategoryListAPIView(generics.ListAPIView):
     permissions_classes = [permissions.AllowAny, ]
-
+    serializer_class = CourseDetailSerializer
+    
     def get_queryset(self):
         timestamp = float(self.kwargs['timestamp'])
         date_value = datetime.datetime.fromtimestamp(timestamp) - timedelta(hours = 2)
-        serializer_class = CourseDetailSerializer
+
         date_value = date_value.strftime('%Y-%m-%dT%H:%M:%S%Z')
         queryset = Course.objects.filter(updated_date__gte = date_value).order_by('updated_date').distinct()
         return queryset
