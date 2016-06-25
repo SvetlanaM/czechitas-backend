@@ -27,7 +27,7 @@ class CourseAllAPIView(generics.ListAPIView):
 	queryset = Course.objects.filter(publish = True)
 	serializer_class = CourseDetailSerializer
 
-class CategoryListAPIView(MultipleModelAPIView):
+class CategoryListAPIView(generics.ListAPIView):
     permissions_classes = [permissions.AllowAny, ]
 
     def get_queryset(self):
