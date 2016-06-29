@@ -74,7 +74,7 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CitySerializer(many = False, read_only = True)
     url = serializers.HyperlinkedIdentityField(view_name = 'course-detail', lookup_field = 'pk')
-    
+
 
     class Meta:
         model = Course
@@ -127,6 +127,7 @@ class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
             'course_price',
             'notes',
             'registration_form_link',
+            'interested_form_link',
             'course_venue',
             'course_category',
             'couch',
