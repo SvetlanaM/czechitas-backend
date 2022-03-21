@@ -19,8 +19,6 @@ class Couch(models.Model):
     def get_user_email(self):
         return self.user.email
 
-
-
 class Category(models.Model):
     title = models.CharField(max_length = 80)
     color_code = models.CharField(max_length = 25, help_text = "Add HEXA code of the course color. Example fffff.", unique = True)
@@ -41,8 +39,6 @@ class Category(models.Model):
 
     def category_color_code(self):
         return u"#" + self.color_code
-
-
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
@@ -74,9 +70,5 @@ class Course(models.Model):
 
     def price(self):
         return '{} CZK'.format(self.course_price)
-
-
-
-
     class Meta:
         ordering = ['updated_date']

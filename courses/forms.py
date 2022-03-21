@@ -10,14 +10,9 @@ class UserCreateForm(UserCreationForm):
         self.fields['username'].required = False
         self.fields['password1'].widget.attrs['autocomplete'] = 'off'
 
-
-
     email = forms.EmailField(required = True)
     first_name = forms.CharField(required = False)
     last_name = forms.CharField(required = False)
-
-
-
     class Meta:
         model = User
         fields = ('first_name' , 'last_name', 'username', 'email', 'password1',
@@ -30,7 +25,7 @@ class UserCreateForm(UserCreationForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         pass1 = self.cleaned_data['password1']
-        #pass2 = self.cleaned_data['password2']
+        pass2 = self.cleaned_data['password2']
         if pass1:
             user.password = pass1
         else:

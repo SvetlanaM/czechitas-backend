@@ -5,8 +5,6 @@ from .models import CourseVenue
 class CitySerializer(serializers.HyperlinkedModelSerializer):
     city = serializers.CharField(source='get_city')
     states = serializers.SerializerMethodField()
-
-
     def get_states(self, obj):
         temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
         try:
@@ -18,7 +16,6 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
                 pass
         except:
             return "No changes"
-
     class Meta:
         model = CourseVenue
         fields = (
@@ -30,8 +27,6 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
 class CourseVenueSerializer(serializers.HyperlinkedModelSerializer):
     states = serializers.SerializerMethodField()
 
-
-
     def get_states(self, obj):
         temp = CourseVenue.objects.get(id=obj.id).audit_log.last()
         try:
@@ -43,7 +38,6 @@ class CourseVenueSerializer(serializers.HyperlinkedModelSerializer):
                 pass
         except:
             return "No changes"
-
     class Meta:
         model = CourseVenue
         fields = (

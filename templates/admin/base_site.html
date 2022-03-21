@@ -1,82 +1,93 @@
-{% extends "admin/base.html" %}
-{% load staticfiles %}
-
-{% block title %}Czechitas{% endblock %}
-
-{% block extrastyle %}
+{% extends "admin/base.html" %} {% load staticfiles %} {% block title
+%}Czechitas{% endblock %} {% block extrastyle %}
 <style>
-  .side-nav.fixed .logo {
-    background-color: #ffffff;
-  }
-  .green {
-    background-color: #293b8e !important;
-  }
-  .green.darken-2 {
-    background-color: #1c318e !important;
-  }
-  .green-text.text-lighten-2 {
-    color: #293b8e !important;
-  }
-  img.logo-img {
-    width: 100%;
-  }
-  .side-nav.fixed .collapsible-body li.active.header {
-    background-color: #1c318e;
-    border-bottom: 1px solid #eee;
-  }
-  ul.side-nav.module-menu .collapsible-body li.active, .side-nav.fixed .collapsible-body li.active {
-    background: #293b8e;
-  }
-  .red {
-    background-color: #ea148c !important;
-  }
-  input:not([type]):focus,
-  input[type=text]:focus,
-  input[type=password]:focus,
-  input[type=email]:focus,
-  input[type=url]:focus,
-  input[type=time]:focus,
-  input[type=date]:focus,
-  input[type=datetime-local]:focus,
-  input[type=tel]:focus,
-  input[type=number]:focus,
-  input[type=search]:focus, textarea.materialize-textarea:focus {
-    border-bottom: 1px solid #293b8e;
-    box-shadow: 0 1px 0 0 #293b8e;
-  }
-  input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #293b8e;
-    box-shadow: 0 1px 0 0 #293b8e;
-  }
-  .dropdown-content li > a, .dropdown-content li > span {
-    color: #293b8e;
-  }
-  input:not([type]):focus:not([readonly]) + label,
-  input[type=text]:focus:not([readonly]) + label,
-  input[type=password]:focus:not([readonly]) + label,
-  input[type=email]:focus:not([readonly]) + label,
-  input[type=url]:focus:not([readonly]) + label,
-  input[type=time]:focus:not([readonly]) + label,
-  input[type=date]:focus:not([readonly]) + label,
-  input[type=datetime-local]:focus:not([readonly]) + label,
-  input[type=tel]:focus:not([readonly]) + label,
-  input[type=number]:focus:not([readonly]) + label,
-  input[type=search]:focus:not([readonly]) + label,
-  textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #293b8e;
-  }
-  .btn, .btn-large {
-    background-color: #293b8e;
-  }
-  .intro-section {
-    margin-left: 25px;
-    padding: 25px 25px;
-  }
-  div#id_username_container {
-    display: none;
-  }
+	.side-nav.fixed .logo {
+		background-color: #ffffff;
+	}
+	.green {
+		background-color: #293b8e !important;
+	}
+	.green.darken-2 {
+		background-color: #1c318e !important;
+	}
+	.green-text.text-lighten-2 {
+		color: #293b8e !important;
+	}
+	img.logo-img {
+		width: 100%;
+	}
+	.side-nav.fixed .collapsible-body li.active.header {
+		background-color: #1c318e;
+		border-bottom: 1px solid #eee;
+	}
+	ul.side-nav.module-menu .collapsible-body li.active,
+	.side-nav.fixed .collapsible-body li.active {
+		background: #293b8e;
+	}
+	.red {
+		background-color: #ea148c !important;
+	}
+	input:not([type]):focus,
+	input[type='text']:focus,
+	input[type='password']:focus,
+	input[type='email']:focus,
+	input[type='url']:focus,
+	input[type='time']:focus,
+	input[type='date']:focus,
+	input[type='datetime-local']:focus,
+	input[type='tel']:focus,
+	input[type='number']:focus,
+	input[type='search']:focus,
+	textarea.materialize-textarea:focus {
+		border-bottom: 1px solid #293b8e;
+		box-shadow: 0 1px 0 0 #293b8e;
+	}
+	input:not([type]):focus:not([readonly]),
+	input[type='text']:focus:not([readonly]),
+	input[type='password']:focus:not([readonly]),
+	input[type='email']:focus:not([readonly]),
+	input[type='url']:focus:not([readonly]),
+	input[type='time']:focus:not([readonly]),
+	input[type='date']:focus:not([readonly]),
+	input[type='datetime-local']:focus:not([readonly]),
+	input[type='tel']:focus:not([readonly]),
+	input[type='number']:focus:not([readonly]),
+	input[type='search']:focus:not([readonly]),
+	textarea.materialize-textarea:focus:not([readonly]) {
+		border-bottom: 1px solid #293b8e;
+		box-shadow: 0 1px 0 0 #293b8e;
+	}
+	.dropdown-content li > a,
+	.dropdown-content li > span {
+		color: #293b8e;
+	}
+	input:not([type]):focus:not([readonly]) + label,
+	input[type='text']:focus:not([readonly]) + label,
+	input[type='password']:focus:not([readonly]) + label,
+	input[type='email']:focus:not([readonly]) + label,
+	input[type='url']:focus:not([readonly]) + label,
+	input[type='time']:focus:not([readonly]) + label,
+	input[type='date']:focus:not([readonly]) + label,
+	input[type='datetime-local']:focus:not([readonly]) + label,
+	input[type='tel']:focus:not([readonly]) + label,
+	input[type='number']:focus:not([readonly]) + label,
+	input[type='search']:focus:not([readonly]) + label,
+	textarea.materialize-textarea:focus:not([readonly]) + label {
+		color: #293b8e;
+	}
+	.btn,
+	.btn-large {
+		background-color: #293b8e;
+	}
+	.intro-section {
+		margin-left: 25px;
+		padding: 25px 25px;
+	}
+	div#id_username_container {
+		display: none;
+	}
 </style>
-{% endblock %}
-{% block branding %}<img src="https://trello-attachments.s3.amazonaws.com/5585ac604e4d95cb6a64c0a7/931x272/4c4bb01f7dcb65f55073d70bceca56ad/czechitas-logo.png" class="logo-img">{% endblock %}
-
-{% block nav-global %}{% endblock %}
+{% endblock %} {% block branding %}<img
+	src="https://trello-attachments.s3.amazonaws.com/5585ac604e4d95cb6a64c0a7/931x272/4c4bb01f7dcb65f55073d70bceca56ad/czechitas-logo.png"
+	class="logo-img"
+/>{% endblock %} {% block nav-global %}{% endblock %}

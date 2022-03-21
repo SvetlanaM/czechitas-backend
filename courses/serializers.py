@@ -42,7 +42,6 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
                 pass
         except:
             return "No changes"
-
     class Meta:
         model = Category
         fields = (
@@ -62,7 +61,6 @@ class DeletedSerializer(serializers.HyperlinkedModelSerializer):
                 return i.action_type
         except:
             return "No changes"
-
     class Meta:
         model = Category
         fields = (
@@ -88,17 +86,13 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
             'course_venue',
             'updated_date',
             'course_category',
-
-
         )
-
 
 class CourseDetailSerializer(serializers.HyperlinkedModelSerializer):
     course_category = CategorySerializer(many = False, read_only = True)
     course_venue = CourseVenueSerializer(many = False, read_only = True)
     couch = UserDetailSerializer(many = False, read_only = True)
     states = serializers.SerializerMethodField()
-
 
     def get_states(self, obj):
         temp = Course.objects.get(id=obj.id).audit_log.first()

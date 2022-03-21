@@ -4,7 +4,6 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from .forms import UserCreateForm
 
-"""
 class UserAdmin(BaseUserAdmin):
     add_form = UserCreateForm
 
@@ -14,7 +13,6 @@ class UserAdmin(BaseUserAdmin):
             'fields': ('first_name', 'last_name', 'email', 'password1', 'password2', 'username', ),
         }),
     )
-"""
 
 class CouchInline(admin.StackedInline):
     model = Couch
@@ -30,7 +28,6 @@ class CouchAdmin(BaseUserAdmin):
         }),
     )
 
-
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('title', 'publish', 'couch', 'category', 'venue', 'price',  )
     list_filter = ('publish', 'course_start_date', 'registration_start_date', 'open_registration', )
@@ -40,7 +37,6 @@ class CourseAdmin(admin.ModelAdmin):
     def make_published(self, request, queryset):
         queryset.update(publish=False)
     make_published.short_description = "Mark selected stories as published"
-
 
     def category(self, obj):
         return obj.course_category.title
@@ -61,4 +57,4 @@ admin.site.register(Course, CourseAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.unregister(User)
 admin.site.register(User, CouchAdmin)
-#admin.site.register(User, UserAdmin)
+admin.site.register(User, UserAdmin)

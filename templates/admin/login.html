@@ -1,71 +1,72 @@
-{% extends "admin/base_site.html" %}
-{% load admin_static material_form %}
+{% extends "admin/base_site.html" %} {% load admin_static material_form %} {%
+block extrastyle %}
+<style>
+	ul#nav-mobile,
+	.green.darken-2,
+	.nav-top {
+		display: none;
+	}
+	.input-field .prefix.active {
+		color: #293b8e;
+	}
+	.card {
+		margin: 6rem 0px;
+	}
+	.btn,
+	.btn-large {
+		background-color: #293b8e;
+	}
+	input:not([type]):focus:not([readonly]),
+	input[type='text']:focus:not([readonly]),
+	input[type='password']:focus:not([readonly]),
+	input[type='email']:focus:not([readonly]),
+	input[type='url']:focus:not([readonly]),
+	input[type='time']:focus:not([readonly]),
+	input[type='date']:focus:not([readonly]),
+	input[type='datetime-local']:focus:not([readonly]),
+	input[type='tel']:focus:not([readonly]),
+	input[type='number']:focus:not([readonly]),
+	input[type='search']:focus:not([readonly]),
+	textarea.materialize-textarea:focus:not([readonly]) {
+		border-bottom: 1px solid #293b8e;
+		box-shadow: 0 1px 0 0 #293b8e;
+	}
+	body {
+		background: url('https://trello-attachments.s3.amazonaws.com/5585ac604e4d95cb6a64c0a7/2048x1365/cf09f9fa251760d1bf900445dbf74653/bg2.jpg')
+			no-repeat;
+		background-position: 0px;
+		background-size: cover;
+	}
+</style>
 
-{% block extrastyle %}
-  <style>
-  ul#nav-mobile,
-  .green.darken-2,
-  .nav-top {
-    display: none;
-  }
-  .input-field .prefix.active {
-    color: #293b8e;
-  }
-  .card {
-    margin: 6rem 0px;
-  }
-  .btn, .btn-large {
-    background-color: #293b8e;
-  }
-  input:not([type]):focus:not([readonly]),
-  input[type=text]:focus:not([readonly]),
-  input[type=password]:focus:not([readonly]),
-  input[type=email]:focus:not([readonly]),
-  input[type=url]:focus:not([readonly]),
-  input[type=time]:focus:not([readonly]),
-  input[type=date]:focus:not([readonly]),
-  input[type=datetime-local]:focus:not([readonly]),
-  input[type=tel]:focus:not([readonly]),
-  input[type=number]:focus:not([readonly]),
-  input[type=search]:focus:not([readonly]),
-  textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #293b8e;
-    box-shadow: 0 1px 0 0 #293b8e;
-  }
-  body {
-    background: url('https://trello-attachments.s3.amazonaws.com/5585ac604e4d95cb6a64c0a7/2048x1365/cf09f9fa251760d1bf900445dbf74653/bg2.jpg') no-repeat;
-    background-position: 0px;
-    background-size: cover;
-  }
-  </style>
-
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="row">
-    <div class="col s12 offset-m1 m8">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title black-text">Log in</span>
+	<div class="col s12 offset-m1 m8">
+		<div class="card">
+			<div class="card-content">
+				<span class="card-title black-text">Log in</span>
 
-                <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-                    {% form %}
-                        {% part form.username prefix %}<i class="mdi-action-account-box prefix"></i>{% endpart %}
-                        {% part form.password prefix %}<i class="mdi-action-lock prefix"></i>{% endpart %}
-                    {% endform %}
-
-                    {% url 'admin_password_reset' as password_reset_url %}
-                    {% if password_reset_url %}
-                    <div class="password-reset-link">
-                        <a href="{{ password_reset_url }}">Forgotten your password or username?</a>
-                    </div>
-                    {% endif %}
-                    <div class="card-action right-align">
-                        <button type="submit" class="btn btn-primary">Log in</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+				<form action="{{ app_path }}" method="post" id="login-form"
+					>{% csrf_token %} {% form %} {% part form.username prefix %}<i
+						class="mdi-action-account-box prefix"
+					></i
+					>{% endpart %} {% part form.password prefix %}<i
+						class="mdi-action-lock prefix"
+					></i
+					>{% endpart %} {% endform %} {% url 'admin_password_reset' as
+					password_reset_url %} {% if password_reset_url %}
+					<div class="password-reset-link">
+						<a href="{{ password_reset_url }}"
+							>Forgotten your password or username?</a
+						>
+					</div>
+					{% endif %}
+					<div class="card-action right-align">
+						<button type="submit" class="btn btn-primary">Log in</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
